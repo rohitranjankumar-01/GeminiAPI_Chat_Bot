@@ -1,14 +1,17 @@
 import os
 from google import genai
-from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 
-
 gclient = genai.Client(api_key = api_key)
 
+try:
+    with open("prompt.txt", "r") as f:
+        my_prompt = f.read()
+except FileNotFoundError:
+    print("Error: prompt.txt not found. Please create the file.")
 
 def ChatBot(text):
     resp = gclient.models.generate_content(
@@ -19,8 +22,4 @@ def ChatBot(text):
     print(resp.text)
 
 
-while True:
-    input_text = input("Enter Your Prompt (Type 'exit' to quit): ")
-    if input_text.lower() == "exit":
-        break
-    ChatBot(input_text)
+ChatBot(my_prompt)
