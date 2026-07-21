@@ -3,23 +3,20 @@ from google import genai
 from dotenv import load_dotenv
 
 load_dotenv()
+
 api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key)
 
-gclient = genai.Client(api_key = api_key)
-
-try:
-    with open("prompt.txt", "r") as f:
-        my_prompt = f.read()
-except FileNotFoundError:
-    print("Error: prompt.txt not found. Please create the file.")
+with open("prompt.txt", "r") as f:
+    my_prompt = f.read()
 
 def ChatBot(text):
-    resp = gclient.models.generate_content(
-    model="gemini-2.5-flash",
-    contents=text,
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=text,
     )
-    
-    print(resp.text)
+    print(response.text)
 
+if __name__ == "__main__":
+    ChatBot(my_prompt)
 
-ChatBot(my_prompt)

@@ -1,12 +1,23 @@
-# Gemini Prompt Bot
+# Gemini API Chat Bot
 
-A simple Python tool that reads a prompt from `prompt.txt`, sends it to the Gemini API, and returns the result.
+A simple Python script to send prompts to the Gemini API (`gemini-2.5-flash`) using `google-genai`.
 
 ## Setup
-1. `pip install -r requirements.txt`
-2. Create a `.env` file with: `GEMINI_API_KEY=your_key_here`
-3. Write your prompt in `prompt.txt`
+
+1. Install requirements:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Create a `.env` file and add your Gemini API Key:
+   ```env
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
+3. Add your prompt text in `prompt.txt`.
 
 ## Run
+
 ```bash
 python app.py
+```
